@@ -1,0 +1,53 @@
+﻿@model Laptrinhweb.Models.Man
+
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_LayoutABC1.cshtml";
+}
+<div class="container">
+    <h2>Log in</h2>
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Login</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Sign in</h4>
+                </div>
+                <div class="modal-body">
+                    <h4 style="color:red; text-align:center">>@ViewBag.Thongbao</h4>
+                    <table align="center">
+                        <h3 style="text-align:center">ĐĂNG NHẬP</h3>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.ValidationSummary(true)
+                            <tr style="height:40px">
+                                <td> Tên đăng nhập:</td>
+                                <td>
+                                    @Html.TextBox("TenDN")
+                                    @ViewData["Loi1"]
+                                </td>
+                            </tr>
+                            <tr style="height:40px">
+                                <td> Mật khẩu:</td>
+                                <td>
+                                    @Html.Password("Matkhau")
+                                    @ViewData["Loi2"]
+                                </td>
+                            </tr>
+                            <tr style="height:40px">
+                                <td></td>
+                                <td>
+                                    <input type="submit" value="Đăng nhập" />
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

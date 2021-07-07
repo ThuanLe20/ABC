@@ -1,0 +1,48 @@
+﻿
+<style type="text/css">
+    #Datmua a {
+        clear: both;
+        background-color: antiquewhite;
+        color: white;
+        width: 120px;
+        height: 35px;
+        display: block;
+        float: right;
+        text-align: center;
+        padding-top: 10px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        #Datmua a:hover {
+            background-color: gray;
+            color: black;
+        }
+</style>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutABC1.cshtml";
+}
+
+<h2>Details</h2>
+
+
+<h3><br /><br />Product Details</h3>
+<div>
+    <div style="width:40%; float:left; border-left: dotted 1px; border-color:azure">
+        <img src="~/Images/@Model.image" width="300" height="150" />
+    </div>
+    <div style="width:50%; float:left; padding:10px">
+        <h4 style="font-weight:bold; color:black ; font-size:20px">Name: @Model.namepro </h4>
+        <p style="text-align:justify"><Span style="font-weight:bold">Description:</Span>@Model.description </p>
+        <p style="font-weight:bold">Price: <span style="color:red; font-size:16pt "> @Model.price VNĐ</span></p>
+    </div>
+    <div>
+       
+        <div id="Datmua">
+            <a href="@Url.Action("AddCart", "Cart", new { @iidpro = @Model.idpro ,@strURL=Request.Url.ToString()})" style="color:black">Order</a>
+            <a href="@Url.Action("All", "ABC")" style="color:black">Back</a>
+        </div>
+
+    </div>
+</div>

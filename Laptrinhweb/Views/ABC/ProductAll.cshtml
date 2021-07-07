@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Laptrinhweb.Models.Product>
+@{
+    ViewBag.Title = "ProductAll";
+    Layout = "~/Views/Shared/_LayoutABC1.cshtml";
+}
+<br />
+<br />
+<br />
+<h2>Product</h2>
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <a href="@Url.Action("Details", "ABC", new { id = item.idpro})">
+                    <img alt="@item.namepro" src="~/Images/@item.image" />
+                    <div class="caption">
+                        <h4 style="text-align:center"> @item.namepro  </h4>
+                        <h4 class="pull-right">@item.price VNĐ</h4>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-left">135 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+<div >
+    <h2><a href="@Url.Action("All", "ABC")" style="color:black">Back</a></h2>
+</div>

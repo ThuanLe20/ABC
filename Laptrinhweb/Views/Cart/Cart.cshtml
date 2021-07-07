@@ -1,0 +1,50 @@
+﻿@using Laptrinhweb.Models
+@model List<Cart>
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_LayoutABC1.cshtml";
+}
+
+<h2><br /><br />Cart Details</h2>
+<table align="center" border="1">
+    <tr style="text-align:center;font-weight:bold">
+        <td>Id Product</td>
+        <td>Name Product</td>
+        <td>Image</td>
+        <td>Count</td>
+        <td>Unit Price</td>
+        <td>Price</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style="text-align:center;font-weight:bold;">
+            <td>@item.iidpro</td>
+            <td>@item.snamepro</td>
+            <td><img src="~/Images/@item.simage" width="350" height="200" /></td>
+            @using (Html.BeginForm("UpdateCart", "Cart", new { @iidsp = item.iidpro }))
+            {
+                <td>
+                    <input type="number" min="1" name="txtcount" value="@item.icount" style="text-align:center;max-width:50px" />
+                </td>
+                <td>@String.Format("{0:0,0}", item.dprice)</td>
+                <td>@String.Format("{0:0,0}", item.dintoprice)</td>
+                <td><a style="color:black" href="@Url.Action("Details", "ABC",new { id = item.iidpro })">Details</a></td>
+                <td><a style="color:black" href="@Html.ActionLink("Delete", "DeleteCart", new { @iidsp = item.iidpro })</a></td>
+                <td><input type="submit" value="Update" /></td>
+            }
+        </tr>
+    }
+    <tr style="font-weight:bold;text-align:right;color:red;text-align:center">
+        <td colspan="4">Total Product : @ViewBag.totalcount</td>
+        <td colspan="5">Total Price : @String.Format("{0:0,0}", ViewBag.totalprice)VNĐ</td>
+    </tr>
+    <tr style="font-weight:bold;text-align:right;color:red;text-align:center">
+        <td colspan="9">@Html.ActionLink("Delete All", "DeleteAll")</td>
+    </tr>
+    <tr style="font-weight:bold;text-align:right;color:red;">
+        <td colspan="9" align="center">@Html.ActionLink("Order", "Order","Cart")</td>
+    </tr>
+</table>
