@@ -59,13 +59,10 @@ create table Bill(
 	
 )
 create table InfoBill(
-	idib int identity(1,1) not null primary key,
 	price float null,
 	idpro int not null,
 	idbill int not null,
-	count int null
-	foreign key (idpro) references Product(idpro),
-	foreign key (idbill) references Bill(idbill)
+	count int null	
 )
 create table Contact(
 	idcon int identity(1,1) not null primary key,
@@ -79,6 +76,13 @@ create table Contact(
 
 	foreign key (idman) references Man(idman)
 )
+
+create table Admin(
+	useradmin varchar(30) primary key,
+	passadmin varchar(30) not null,
+	name nvarchar(50)
+)
+
 
 insert Category(name) values(N'All')
 insert Category(name) values(N'Breads')
@@ -210,5 +214,6 @@ insert Product(namepro,price,image,description,idcate)
 values (N'Yogurt dâu',20000,'A15.png', 
 N'Yogurt có vị dâu thanh mát',8)
 
-DBCC CHECKIDENT ('dbo.Product', RESEED, 0);
-delete from Product
+insert into Admin values('admin','123456','Thuận')
+insert into Admin values('user','456789','Khánh')
+

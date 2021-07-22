@@ -1,0 +1,52 @@
+﻿@model Laptrinhweb.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Name :
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.namepro)
+        </dd>
+        <dt>
+            Price : 
+        </dt>
+        <dd>
+            @String.Format("{0:0,0}", Model.price) VNĐ
+        </dd>
+        <dt>
+            Images : 
+        </dt>
+        <dd>
+            <img src="@Url.Content("~/Images/" + Model.image)" width="120"/>
+        </dd>
+        <dt>
+            Description :
+        </dt>
+        <dd style="width:600px;text-align:justify">
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            Category :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "Product")
+</p>

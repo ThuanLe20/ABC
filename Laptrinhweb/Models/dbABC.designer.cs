@@ -30,12 +30,12 @@ namespace Laptrinhweb.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertProduct(Product instance);
-    partial void UpdateProduct(Product instance);
-    partial void DeleteProduct(Product instance);
     partial void InsertBill(Bill instance);
     partial void UpdateBill(Bill instance);
     partial void DeleteBill(Bill instance);
+    partial void InsertProduct(Product instance);
+    partial void UpdateProduct(Product instance);
+    partial void DeleteProduct(Product instance);
     partial void InsertCart(Cart instance);
     partial void UpdateCart(Cart instance);
     partial void DeleteCart(Cart instance);
@@ -54,6 +54,9 @@ namespace Laptrinhweb.Models
     partial void InsertMan(Man instance);
     partial void UpdateMan(Man instance);
     partial void DeleteMan(Man instance);
+    partial void InsertAdmin(Admin instance);
+    partial void UpdateAdmin(Admin instance);
+    partial void DeleteAdmin(Admin instance);
     #endregion
 		
 		public dbABCDataContext() : 
@@ -86,19 +89,19 @@ namespace Laptrinhweb.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Product> Products
-		{
-			get
-			{
-				return this.GetTable<Product>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Bill> Bills
 		{
 			get
 			{
 				return this.GetTable<Bill>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Product> Products
+		{
+			get
+			{
+				return this.GetTable<Product>();
 			}
 		}
 		
@@ -149,6 +152,289 @@ namespace Laptrinhweb.Models
 				return this.GetTable<Man>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Admin> Admins
+		{
+			get
+			{
+				return this.GetTable<Admin>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Bill")]
+	public partial class Bill : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idbill;
+		
+		private string _address;
+		
+		private System.Nullable<System.DateTime> _datein;
+		
+		private System.Nullable<System.DateTime> _dateout;
+		
+		private string _phoneout;
+		
+		private System.Nullable<bool> _status;
+		
+		private System.Nullable<int> _idcus;
+		
+		private EntitySet<InfoBill> _InfoBills;
+		
+		private EntityRef<Man> _Man;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidbillChanging(int value);
+    partial void OnidbillChanged();
+    partial void OnaddressChanging(string value);
+    partial void OnaddressChanged();
+    partial void OndateinChanging(System.Nullable<System.DateTime> value);
+    partial void OndateinChanged();
+    partial void OndateoutChanging(System.Nullable<System.DateTime> value);
+    partial void OndateoutChanged();
+    partial void OnphoneoutChanging(string value);
+    partial void OnphoneoutChanged();
+    partial void OnstatusChanging(System.Nullable<bool> value);
+    partial void OnstatusChanged();
+    partial void OnidcusChanging(System.Nullable<int> value);
+    partial void OnidcusChanged();
+    #endregion
+		
+		public Bill()
+		{
+			this._InfoBills = new EntitySet<InfoBill>(new Action<InfoBill>(this.attach_InfoBills), new Action<InfoBill>(this.detach_InfoBills));
+			this._Man = default(EntityRef<Man>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idbill", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idbill
+		{
+			get
+			{
+				return this._idbill;
+			}
+			set
+			{
+				if ((this._idbill != value))
+				{
+					this.OnidbillChanging(value);
+					this.SendPropertyChanging();
+					this._idbill = value;
+					this.SendPropertyChanged("idbill");
+					this.OnidbillChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address", DbType="NVarChar(100)")]
+		public string address
+		{
+			get
+			{
+				return this._address;
+			}
+			set
+			{
+				if ((this._address != value))
+				{
+					this.OnaddressChanging(value);
+					this.SendPropertyChanging();
+					this._address = value;
+					this.SendPropertyChanged("address");
+					this.OnaddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_datein", DbType="DateTime")]
+		public System.Nullable<System.DateTime> datein
+		{
+			get
+			{
+				return this._datein;
+			}
+			set
+			{
+				if ((this._datein != value))
+				{
+					this.OndateinChanging(value);
+					this.SendPropertyChanging();
+					this._datein = value;
+					this.SendPropertyChanged("datein");
+					this.OndateinChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateout", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dateout
+		{
+			get
+			{
+				return this._dateout;
+			}
+			set
+			{
+				if ((this._dateout != value))
+				{
+					this.OndateoutChanging(value);
+					this.SendPropertyChanging();
+					this._dateout = value;
+					this.SendPropertyChanged("dateout");
+					this.OndateoutChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phoneout", DbType="VarChar(100)")]
+		public string phoneout
+		{
+			get
+			{
+				return this._phoneout;
+			}
+			set
+			{
+				if ((this._phoneout != value))
+				{
+					this.OnphoneoutChanging(value);
+					this.SendPropertyChanging();
+					this._phoneout = value;
+					this.SendPropertyChanged("phoneout");
+					this.OnphoneoutChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="Bit")]
+		public System.Nullable<bool> status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idcus", DbType="Int")]
+		public System.Nullable<int> idcus
+		{
+			get
+			{
+				return this._idcus;
+			}
+			set
+			{
+				if ((this._idcus != value))
+				{
+					if (this._Man.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidcusChanging(value);
+					this.SendPropertyChanging();
+					this._idcus = value;
+					this.SendPropertyChanged("idcus");
+					this.OnidcusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bill_InfoBill", Storage="_InfoBills", ThisKey="idbill", OtherKey="idbill")]
+		public EntitySet<InfoBill> InfoBills
+		{
+			get
+			{
+				return this._InfoBills;
+			}
+			set
+			{
+				this._InfoBills.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Man_Bill", Storage="_Man", ThisKey="idcus", OtherKey="idman", IsForeignKey=true)]
+		public Man Man
+		{
+			get
+			{
+				return this._Man.Entity;
+			}
+			set
+			{
+				Man previousValue = this._Man.Entity;
+				if (((previousValue != value) 
+							|| (this._Man.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Man.Entity = null;
+						previousValue.Bills.Remove(this);
+					}
+					this._Man.Entity = value;
+					if ((value != null))
+					{
+						value.Bills.Add(this);
+						this._idcus = value.idman;
+					}
+					else
+					{
+						this._idcus = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Man");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_InfoBills(InfoBill entity)
+		{
+			this.SendPropertyChanging();
+			entity.Bill = this;
+		}
+		
+		private void detach_InfoBills(InfoBill entity)
+		{
+			this.SendPropertyChanging();
+			entity.Bill = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Product")]
@@ -161,13 +447,13 @@ namespace Laptrinhweb.Models
 		
 		private string _namepro;
 		
-		private double _price;
+		private System.Nullable<double> _price;
 		
 		private string _image;
 		
 		private string _description;
 		
-		private System.Nullable<int> _idcate;
+		private int _idcate;
 		
 		private EntitySet<InfoBill> _InfoBills;
 		
@@ -183,13 +469,13 @@ namespace Laptrinhweb.Models
     partial void OnidproChanged();
     partial void OnnameproChanging(string value);
     partial void OnnameproChanged();
-    partial void OnpriceChanging(double value);
+    partial void OnpriceChanging(System.Nullable<double> value);
     partial void OnpriceChanged();
     partial void OnimageChanging(string value);
     partial void OnimageChanged();
     partial void OndescriptionChanging(string value);
     partial void OndescriptionChanged();
-    partial void OnidcateChanging(System.Nullable<int> value);
+    partial void OnidcateChanging(int value);
     partial void OnidcateChanged();
     #endregion
 		
@@ -221,7 +507,7 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_namepro", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_namepro", DbType="NVarChar(100)")]
 		public string namepro
 		{
 			get
@@ -241,8 +527,8 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float NOT NULL")]
-		public double price
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float")]
+		public System.Nullable<double> price
 		{
 			get
 			{
@@ -261,7 +547,7 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="NVarChar(500)")]
 		public string image
 		{
 			get
@@ -281,7 +567,7 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="NVarChar(2000) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="NVarChar(2000)")]
 		public string description
 		{
 			get
@@ -301,8 +587,8 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idcate", DbType="Int")]
-		public System.Nullable<int> idcate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idcate", DbType="Int NOT NULL")]
+		public int idcate
 		{
 			get
 			{
@@ -378,7 +664,7 @@ namespace Laptrinhweb.Models
 					}
 					else
 					{
-						this._idcate = default(Nullable<int>);
+						this._idcate = default(int);
 					}
 					this.SendPropertyChanged("Category");
 				}
@@ -430,418 +716,6 @@ namespace Laptrinhweb.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Bill")]
-	public partial class Bill : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idbill;
-		
-		private string _address;
-		
-		private string _note;
-		
-		private string _customername;
-		
-		private System.Nullable<System.DateTime> _dateearn;
-		
-		private System.Nullable<System.DateTime> _datein;
-		
-		private System.Nullable<System.DateTime> _dateout;
-		
-		private string _phoneout;
-		
-		private string _status;
-		
-		private System.Nullable<int> _idcus;
-		
-		private System.Nullable<int> _idship;
-		
-		private EntitySet<InfoBill> _InfoBills;
-		
-		private EntityRef<Man> _Man;
-		
-		private EntityRef<Man> _Man1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidbillChanging(int value);
-    partial void OnidbillChanged();
-    partial void OnaddressChanging(string value);
-    partial void OnaddressChanged();
-    partial void OnnoteChanging(string value);
-    partial void OnnoteChanged();
-    partial void OncustomernameChanging(string value);
-    partial void OncustomernameChanged();
-    partial void OndateearnChanging(System.Nullable<System.DateTime> value);
-    partial void OndateearnChanged();
-    partial void OndateinChanging(System.Nullable<System.DateTime> value);
-    partial void OndateinChanged();
-    partial void OndateoutChanging(System.Nullable<System.DateTime> value);
-    partial void OndateoutChanged();
-    partial void OnphoneoutChanging(string value);
-    partial void OnphoneoutChanged();
-    partial void OnstatusChanging(string value);
-    partial void OnstatusChanged();
-    partial void OnidcusChanging(System.Nullable<int> value);
-    partial void OnidcusChanged();
-    partial void OnidshipChanging(System.Nullable<int> value);
-    partial void OnidshipChanged();
-    #endregion
-		
-		public Bill()
-		{
-			this._InfoBills = new EntitySet<InfoBill>(new Action<InfoBill>(this.attach_InfoBills), new Action<InfoBill>(this.detach_InfoBills));
-			this._Man = default(EntityRef<Man>);
-			this._Man1 = default(EntityRef<Man>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idbill", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idbill
-		{
-			get
-			{
-				return this._idbill;
-			}
-			set
-			{
-				if ((this._idbill != value))
-				{
-					this.OnidbillChanging(value);
-					this.SendPropertyChanging();
-					this._idbill = value;
-					this.SendPropertyChanged("idbill");
-					this.OnidbillChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address", DbType="NVarChar(100)")]
-		public string address
-		{
-			get
-			{
-				return this._address;
-			}
-			set
-			{
-				if ((this._address != value))
-				{
-					this.OnaddressChanging(value);
-					this.SendPropertyChanging();
-					this._address = value;
-					this.SendPropertyChanged("address");
-					this.OnaddressChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="NVarChar(100)")]
-		public string note
-		{
-			get
-			{
-				return this._note;
-			}
-			set
-			{
-				if ((this._note != value))
-				{
-					this.OnnoteChanging(value);
-					this.SendPropertyChanging();
-					this._note = value;
-					this.SendPropertyChanged("note");
-					this.OnnoteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_customername", DbType="NVarChar(100)")]
-		public string customername
-		{
-			get
-			{
-				return this._customername;
-			}
-			set
-			{
-				if ((this._customername != value))
-				{
-					this.OncustomernameChanging(value);
-					this.SendPropertyChanging();
-					this._customername = value;
-					this.SendPropertyChanged("customername");
-					this.OncustomernameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateearn", DbType="DateTime")]
-		public System.Nullable<System.DateTime> dateearn
-		{
-			get
-			{
-				return this._dateearn;
-			}
-			set
-			{
-				if ((this._dateearn != value))
-				{
-					this.OndateearnChanging(value);
-					this.SendPropertyChanging();
-					this._dateearn = value;
-					this.SendPropertyChanged("dateearn");
-					this.OndateearnChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_datein", DbType="DateTime")]
-		public System.Nullable<System.DateTime> datein
-		{
-			get
-			{
-				return this._datein;
-			}
-			set
-			{
-				if ((this._datein != value))
-				{
-					this.OndateinChanging(value);
-					this.SendPropertyChanging();
-					this._datein = value;
-					this.SendPropertyChanged("datein");
-					this.OndateinChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dateout", DbType="DateTime")]
-		public System.Nullable<System.DateTime> dateout
-		{
-			get
-			{
-				return this._dateout;
-			}
-			set
-			{
-				if ((this._dateout != value))
-				{
-					this.OndateoutChanging(value);
-					this.SendPropertyChanging();
-					this._dateout = value;
-					this.SendPropertyChanged("dateout");
-					this.OndateoutChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phoneout", DbType="VarChar(100)")]
-		public string phoneout
-		{
-			get
-			{
-				return this._phoneout;
-			}
-			set
-			{
-				if ((this._phoneout != value))
-				{
-					this.OnphoneoutChanging(value);
-					this.SendPropertyChanging();
-					this._phoneout = value;
-					this.SendPropertyChanged("phoneout");
-					this.OnphoneoutChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="VarChar(100)")]
-		public string status
-		{
-			get
-			{
-				return this._status;
-			}
-			set
-			{
-				if ((this._status != value))
-				{
-					this.OnstatusChanging(value);
-					this.SendPropertyChanging();
-					this._status = value;
-					this.SendPropertyChanged("status");
-					this.OnstatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idcus", DbType="Int")]
-		public System.Nullable<int> idcus
-		{
-			get
-			{
-				return this._idcus;
-			}
-			set
-			{
-				if ((this._idcus != value))
-				{
-					if (this._Man.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidcusChanging(value);
-					this.SendPropertyChanging();
-					this._idcus = value;
-					this.SendPropertyChanged("idcus");
-					this.OnidcusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idship", DbType="Int")]
-		public System.Nullable<int> idship
-		{
-			get
-			{
-				return this._idship;
-			}
-			set
-			{
-				if ((this._idship != value))
-				{
-					if (this._Man1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidshipChanging(value);
-					this.SendPropertyChanging();
-					this._idship = value;
-					this.SendPropertyChanged("idship");
-					this.OnidshipChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bill_InfoBill", Storage="_InfoBills", ThisKey="idbill", OtherKey="idbill")]
-		public EntitySet<InfoBill> InfoBills
-		{
-			get
-			{
-				return this._InfoBills;
-			}
-			set
-			{
-				this._InfoBills.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Man_Bill", Storage="_Man", ThisKey="idcus", OtherKey="idman", IsForeignKey=true)]
-		public Man Man
-		{
-			get
-			{
-				return this._Man.Entity;
-			}
-			set
-			{
-				Man previousValue = this._Man.Entity;
-				if (((previousValue != value) 
-							|| (this._Man.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Man.Entity = null;
-						previousValue.Bills.Remove(this);
-					}
-					this._Man.Entity = value;
-					if ((value != null))
-					{
-						value.Bills.Add(this);
-						this._idcus = value.idman;
-					}
-					else
-					{
-						this._idcus = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Man");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Man_Bill1", Storage="_Man1", ThisKey="idship", OtherKey="idman", IsForeignKey=true)]
-		public Man Man1
-		{
-			get
-			{
-				return this._Man1.Entity;
-			}
-			set
-			{
-				Man previousValue = this._Man1.Entity;
-				if (((previousValue != value) 
-							|| (this._Man1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Man1.Entity = null;
-						previousValue.Bills1.Remove(this);
-					}
-					this._Man1.Entity = value;
-					if ((value != null))
-					{
-						value.Bills1.Add(this);
-						this._idship = value.idman;
-					}
-					else
-					{
-						this._idship = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Man1");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_InfoBills(InfoBill entity)
-		{
-			this.SendPropertyChanging();
-			entity.Bill = this;
-		}
-		
-		private void detach_InfoBills(InfoBill entity)
-		{
-			this.SendPropertyChanging();
-			entity.Bill = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Cart")]
 	public partial class Cart : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -850,9 +724,11 @@ namespace Laptrinhweb.Models
 		
 		private int _idcart;
 		
-		private double _totalprice;
+		private System.Nullable<double> _totalprice;
 		
 		private int _idman;
+		
+		private System.Nullable<double> _price;
 		
 		private EntitySet<InfoCart> _InfoCarts;
 		
@@ -864,10 +740,12 @@ namespace Laptrinhweb.Models
     partial void OnCreated();
     partial void OnidcartChanging(int value);
     partial void OnidcartChanged();
-    partial void OntotalpriceChanging(double value);
+    partial void OntotalpriceChanging(System.Nullable<double> value);
     partial void OntotalpriceChanged();
     partial void OnidmanChanging(int value);
     partial void OnidmanChanged();
+    partial void OnpriceChanging(System.Nullable<double> value);
+    partial void OnpriceChanged();
     #endregion
 		
 		public Cart()
@@ -897,8 +775,8 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_totalprice", DbType="Float NOT NULL")]
-		public double totalprice
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_totalprice", DbType="Float")]
+		public System.Nullable<double> totalprice
 		{
 			get
 			{
@@ -937,6 +815,26 @@ namespace Laptrinhweb.Models
 					this._idman = value;
 					this.SendPropertyChanged("idman");
 					this.OnidmanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float")]
+		public System.Nullable<double> price
+		{
+			get
+			{
+				return this._price;
+			}
+			set
+			{
+				if ((this._price != value))
+				{
+					this.OnpriceChanging(value);
+					this.SendPropertyChanging();
+					this._price = value;
+					this.SendPropertyChanged("price");
+					this.OnpriceChanged();
 				}
 			}
 		}
@@ -1207,7 +1105,7 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emailcon", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emailcon", DbType="VarChar(100)")]
 		public string emailcon
 		{
 			get
@@ -1267,7 +1165,7 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_textin", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_textin", DbType="NVarChar(100)")]
 		public string textin
 		{
 			get
@@ -1287,7 +1185,7 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_textout", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_textout", DbType="NVarChar(100)")]
 		public string textout
 		{
 			get
@@ -1307,7 +1205,7 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="VarChar(100)")]
 		public string status
 		{
 			get
@@ -1412,13 +1310,13 @@ namespace Laptrinhweb.Models
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _idib;
-		
-		private double _price;
+		private System.Nullable<double> _price;
 		
 		private int _idpro;
 		
 		private int _idbill;
+		
+		private System.Nullable<int> _count;
 		
 		private EntityRef<Bill> _Bill;
 		
@@ -1428,14 +1326,14 @@ namespace Laptrinhweb.Models
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnidibChanging(int value);
-    partial void OnidibChanged();
-    partial void OnpriceChanging(double value);
+    partial void OnpriceChanging(System.Nullable<double> value);
     partial void OnpriceChanged();
     partial void OnidproChanging(int value);
     partial void OnidproChanged();
     partial void OnidbillChanging(int value);
     partial void OnidbillChanged();
+    partial void OncountChanging(System.Nullable<int> value);
+    partial void OncountChanged();
     #endregion
 		
 		public InfoBill()
@@ -1445,28 +1343,8 @@ namespace Laptrinhweb.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idib", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idib
-		{
-			get
-			{
-				return this._idib;
-			}
-			set
-			{
-				if ((this._idib != value))
-				{
-					this.OnidibChanging(value);
-					this.SendPropertyChanging();
-					this._idib = value;
-					this.SendPropertyChanged("idib");
-					this.OnidibChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float NOT NULL")]
-		public double price
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float")]
+		public System.Nullable<double> price
 		{
 			get
 			{
@@ -1485,7 +1363,7 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idpro", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idpro", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int idpro
 		{
 			get
@@ -1509,7 +1387,7 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idbill", DbType="Int NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idbill", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int idbill
 		{
 			get
@@ -1529,6 +1407,26 @@ namespace Laptrinhweb.Models
 					this._idbill = value;
 					this.SendPropertyChanged("idbill");
 					this.OnidbillChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_count", DbType="Int")]
+		public System.Nullable<int> count
+		{
+			get
+			{
+				return this._count;
+			}
+			set
+			{
+				if ((this._count != value))
+				{
+					this.OncountChanging(value);
+					this.SendPropertyChanging();
+					this._count = value;
+					this.SendPropertyChanged("count");
+					this.OncountChanged();
 				}
 			}
 		}
@@ -1630,7 +1528,7 @@ namespace Laptrinhweb.Models
 		
 		private int _idifc;
 		
-		private int _amount;
+		private System.Nullable<int> _amount;
 		
 		private int _idcart;
 		
@@ -1646,7 +1544,7 @@ namespace Laptrinhweb.Models
     partial void OnCreated();
     partial void OnidifcChanging(int value);
     partial void OnidifcChanged();
-    partial void OnamountChanging(int value);
+    partial void OnamountChanging(System.Nullable<int> value);
     partial void OnamountChanged();
     partial void OnidcartChanging(int value);
     partial void OnidcartChanged();
@@ -1681,8 +1579,8 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_amount", DbType="Int NOT NULL")]
-		public int amount
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_amount", DbType="Int")]
+		public System.Nullable<int> amount
 		{
 			get
 			{
@@ -1860,11 +1758,7 @@ namespace Laptrinhweb.Models
 		
 		private System.Nullable<System.DateTime> _birth;
 		
-		private System.Nullable<int> _role;
-		
 		private EntitySet<Bill> _Bills;
-		
-		private EntitySet<Bill> _Bills1;
 		
 		private EntitySet<Cart> _Carts;
 		
@@ -1890,14 +1784,11 @@ namespace Laptrinhweb.Models
     partial void OnaddressChanged();
     partial void OnbirthChanging(System.Nullable<System.DateTime> value);
     partial void OnbirthChanged();
-    partial void OnroleChanging(System.Nullable<int> value);
-    partial void OnroleChanged();
     #endregion
 		
 		public Man()
 		{
 			this._Bills = new EntitySet<Bill>(new Action<Bill>(this.attach_Bills), new Action<Bill>(this.detach_Bills));
-			this._Bills1 = new EntitySet<Bill>(new Action<Bill>(this.attach_Bills1), new Action<Bill>(this.detach_Bills1));
 			this._Carts = new EntitySet<Cart>(new Action<Cart>(this.attach_Carts), new Action<Cart>(this.detach_Carts));
 			this._Contacts = new EntitySet<Contact>(new Action<Contact>(this.attach_Contacts), new Action<Contact>(this.detach_Contacts));
 			OnCreated();
@@ -2063,26 +1954,6 @@ namespace Laptrinhweb.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="Int")]
-		public System.Nullable<int> role
-		{
-			get
-			{
-				return this._role;
-			}
-			set
-			{
-				if ((this._role != value))
-				{
-					this.OnroleChanging(value);
-					this.SendPropertyChanging();
-					this._role = value;
-					this.SendPropertyChanged("role");
-					this.OnroleChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Man_Bill", Storage="_Bills", ThisKey="idman", OtherKey="idcus")]
 		public EntitySet<Bill> Bills
 		{
@@ -2093,19 +1964,6 @@ namespace Laptrinhweb.Models
 			set
 			{
 				this._Bills.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Man_Bill1", Storage="_Bills1", ThisKey="idman", OtherKey="idship")]
-		public EntitySet<Bill> Bills1
-		{
-			get
-			{
-				return this._Bills1;
-			}
-			set
-			{
-				this._Bills1.Assign(value);
 			}
 		}
 		
@@ -2167,18 +2025,6 @@ namespace Laptrinhweb.Models
 			entity.Man = null;
 		}
 		
-		private void attach_Bills1(Bill entity)
-		{
-			this.SendPropertyChanging();
-			entity.Man1 = this;
-		}
-		
-		private void detach_Bills1(Bill entity)
-		{
-			this.SendPropertyChanging();
-			entity.Man1 = null;
-		}
-		
 		private void attach_Carts(Cart entity)
 		{
 			this.SendPropertyChanging();
@@ -2201,6 +2047,116 @@ namespace Laptrinhweb.Models
 		{
 			this.SendPropertyChanging();
 			entity.Man = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Admin")]
+	public partial class Admin : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _useradmin;
+		
+		private string _passadmin;
+		
+		private string _name;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnuseradminChanging(string value);
+    partial void OnuseradminChanged();
+    partial void OnpassadminChanging(string value);
+    partial void OnpassadminChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    #endregion
+		
+		public Admin()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_useradmin", DbType="VarChar(30) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string useradmin
+		{
+			get
+			{
+				return this._useradmin;
+			}
+			set
+			{
+				if ((this._useradmin != value))
+				{
+					this.OnuseradminChanging(value);
+					this.SendPropertyChanging();
+					this._useradmin = value;
+					this.SendPropertyChanged("useradmin");
+					this.OnuseradminChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_passadmin", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string passadmin
+		{
+			get
+			{
+				return this._passadmin;
+			}
+			set
+			{
+				if ((this._passadmin != value))
+				{
+					this.OnpassadminChanging(value);
+					this.SendPropertyChanging();
+					this._passadmin = value;
+					this.SendPropertyChanged("passadmin");
+					this.OnpassadminChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

@@ -35,28 +35,28 @@ namespace Laptrinhweb.Controllers
             var ngaysinh = String.Format("{0:MM/dd/yyyy}", collection["Ngaysinh"]);
             if (String.IsNullOrEmpty(hoten))
             {
-                ViewData["Loi1"] = "Họ tên khách hàng không được để trống";
+                ViewData["Loi1"] = "Customer name cannot be left blank ";
             }
             if (String.IsNullOrEmpty(tendn))
             {
-                ViewData["Loi2"] = "Phải nhập tên đăng nhập";
+                ViewData["Loi2"] = "Username must be entered ";
             }
             if (String.IsNullOrEmpty(matkhau))
             {
-                ViewData["Loi3"] = "Phải nhập mật khẩu";
+                ViewData["Loi3"] = "Password must be entered ";
             }
             if (String.IsNullOrEmpty(matkhaunhaplai))
             {
-                ViewData["Loi4"] = "Phải nhập lại mật khẩu";
+                ViewData["Loi4"] = "Password must be re-entered ";
             }
             if (String.IsNullOrEmpty(email))
             {
-                ViewData["Loi5"] = "Email không được bỏ trống";
+                ViewData["Loi5"] = "Email is not vacant ";
             }
 
             if (String.IsNullOrEmpty(dienthoai))
             {
-                ViewData["Loi6"] = "Phải nhập điện thoai";
+                ViewData["Loi6"] = "Must enter phone ";
             }
             else
             {
@@ -87,24 +87,24 @@ namespace Laptrinhweb.Controllers
             var matkhau = collection["Matkhau"];
             if(String.IsNullOrEmpty(tendn))
             {
-                ViewData["Loi1"] = "Phải nhập tên đăng nhập";
+                ViewData["Loi1"] = "Username must be entered ";
             }
             else if (String.IsNullOrEmpty(matkhau))
             {
-                ViewData["Loi2"] = "Phải nhập mật khẩu";
+                ViewData["Loi2"] = "Password must be entered";
             }
             else
             {
                 Man m = db.Mans.SingleOrDefault(n => n.username == tendn && n.password == matkhau);
                 if(m != null)
                 {
-                    ViewBag.Thongbao = "Chúc mừng đăng nhập thành công";
+                    ViewBag.Thongbao = "Congratulations on successful login ";
                     Session["username"] = m;
                     return RedirectToAction("Index", "ABC");
                 }
                 else
                 {
-                    ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
+                    ViewBag.Thongbao = "Username or password is incorrect ";
                 }
             }
 

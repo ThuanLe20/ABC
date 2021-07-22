@@ -156,3 +156,7 @@ C:\Users\Wuann\Desktop\Laptrinhweb\Laptrinhweb\bin\Antlr3.Runtime.pdb
 C:\Users\Wuann\Desktop\Laptrinhweb\Laptrinhweb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Wuann\Desktop\Laptrinhweb\Laptrinhweb\obj\Debug\Laptrinhweb.csproj.CopyComplete
 C:\Users\Wuann\Desktop\Laptrinhweb\Laptrinhweb\obj\Debug\Laptrinhweb.csproj.AssemblyReference.cache
+C:\Users\Wuann\Desktop\Laptrinhweb\Laptrinhweb\bin\PagedList.dll
+C:\Users\Wuann\Desktop\Laptrinhweb\Laptrinhweb\bin\PagedList.Mvc.dll
+C:\Users\Wuann\Desktop\Laptrinhweb\Laptrinhweb\bin\PagedList.xml
+C:\Users\Wuann\Desktop\Laptrinhweb\Laptrinhweb\bin\PagedList.Mvc.xml

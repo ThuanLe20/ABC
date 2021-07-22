@@ -109,15 +109,16 @@ namespace Laptrinhweb.Controllers
             getcart.Clear();
             return RedirectToAction("All", "ABC");
         }
+        [HttpGet]
         public ActionResult Order()
         {
-            if(Session["Taikhoan"] == null || Session["Taikhoan"].ToString() == "")
+            if (Session["Username"] == null || Session["Username"].ToString() == "")
             {
                 return RedirectToAction("login", "Man");
             }
-            if(Session["Cart"] == null)
+            if (Session["Cart"] == null)
             {
-                return RedirectToAction("Index", "ABC");
+                return RedirectToAction("All", "ABC");
             }
             List<Cart> getcart = ListCart();
             ViewBag.Totalcount = TotalCount();
@@ -125,16 +126,17 @@ namespace Laptrinhweb.Controllers
 
             return View(getcart);
         }
+        [HttpPost]
         public ActionResult Order(FormCollection collection)
         {
             Bill b = new Bill();
-            Man m = (Man)Session["Taikhoan"];
+            Man m = (Man)Session["Username"];
             List<Cart> getcart = ListCart();
             b.idcus = m.idman;
             b.datein = DateTime.Now;
-            var datein = String.Format("{0:MM/dd/yyyy}", collection["dateout"]);
-            b.dateout = DateTime.Parse(datein);
-           
+            var dateout = String.Format("{0:MM/dd/yyyy}", collection["dateout"]);
+            b.dateout = DateTime.Parse(dateout);
+            b.status = false;
             data.Bills.InsertOnSubmit(b);
             data.SubmitChanges();
             foreach(var item in getcart)
@@ -143,6 +145,7 @@ namespace Laptrinhweb.Controllers
                 ib.idbill = b.idbill;
                 ib.idpro = item.iidpro;
                 ib.price = item.dprice;
+                ib.count = item.icount;
                 data.InfoBills.InsertOnSubmit(ib);
             }
             data.SubmitChanges();

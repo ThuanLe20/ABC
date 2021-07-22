@@ -1,0 +1,59 @@
+﻿@using Laptrinhweb.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<Admin>
+@{
+    ViewBag.Title = "Account";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Account</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddAccount")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Account
+        </th>
+        <th>
+            Password
+        </th>
+        <th>
+            Name
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.useradmin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.passadmin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditAccount", new { id = item.useradmin }) |
+                @Html.ActionLink("Delete", "DeleteAccount", new { id = item.useradmin })
+            </td>
+        </tr>
+    }
+
+</table>
+<div style="clear:both">
+    Trang @Model.PageNumber/@Model.PageCount
+</div>
+<div class="MenuTrang">
+
+    @Html.PagedListPager(Model, page => Url.Action("Account", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

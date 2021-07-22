@@ -1,193 +1,103 @@
-﻿@model Laptrinhweb.Models.Man
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
+﻿
 @{
     ViewBag.Title = "signin";
     Layout = "~/Views/Shared/_LayoutABC1.cshtml";
 }
-<ul class="Menuitems" >
-    <li class="list-group-item">
-        <div class="container">
-            <h2>
+<table align="center">
+    <h2 style="text-align:center"><br /><br />Sign up</h2>
+    <p>(* is necessary)</p>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="width:100px">
+            <td>Name*:</td>
+            <p>
+            <td>
+                @Html.TextBox("HotenKH")
                 <br />
-                <br />Tài khoản
-            </h2>
-            <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Signin</button>
+                @ViewData["Loi1"]
+            </td>
+            </p>
+        </tr>
+        <tr style="height:40px">
+            <td>Username*:</td>
+            <p>
+            <td>
+                @Html.TextBox("TenDN")
+                <br />
+                @ViewData["Loi2"]
 
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Sign in</h4>
-                        </div>
+            </td>
+            </p>
+        </tr>
+        <tr style="height:40px">
+            <td>Password*:</td>
+            <p>
+            <td>
+                @Html.Password("Matkhau")
+                <br />
+                @ViewData["Loi3"]
 
-                        <div class="modal-body">
-                            <table align="center">
-                                <p>(* là bắt buộc)</p>
-                                @using (Html.BeginForm())
-                                {
-                                    @Html.ValidationSummary(true)
-                                    <tr style="width:100px">
-                                        <td>Name*:</td>
-                                        <p>
-                                        <td>
-                                            @Html.TextBox("HotenKH")
-                                            <br />
-                                            @ViewData["Loi1"]
-                                        </td>
-                                        </p>
-                                    </tr>
-                                    <tr style="height:40px">
-                                        <td>Username*:</td>
-                                        <p>
-                                        <td>
-                                            @Html.TextBox("TenDN")
-                                            <br />
-                                            @ViewData["Loi2"]
+            </td>
+            </p>
+        </tr>
+        <tr style="height:40px">
+            <td>Re-enter*: </td>
+            <p>
+            <td>
+                @Html.Password("Matkhaunhaplai")
+                <br />
+                @ViewData["Loi4"]
 
-                                        </td>
-                                        </p>
-                                    </tr>
-                                    <tr style="height:40px">
-                                        <td>Password*:</td>
-                                        <p>
-                                        <td>
-                                            @Html.Password("Matkhau")
-                                            <br />
-                                            @ViewData["Loi3"]
+            </td>
+            </p>
+        </tr>
+        <tr style="height:40px">
+            <td>Email*:</td>
+            <p>
+            <td>
+                @Html.TextBox("Email")
+                <br />
+                @ViewData["Loi5"]
 
-                                        </td>
-                                        </p>
-                                    </tr>
-                                    <tr style="height:40px">
-                                        <td>Re-enter*: </td>
-                                        <p>
-                                        <td>
-                                            @Html.Password("Matkhaunhaplai")
-                                            <br />
-                                            @ViewData["Loi4"]
+            </td>
+            </p>
+        </tr>
+        <tr style="height:40px">
+            <td>Address:</td>
+            <p>
+            <td>
+                @Html.TextBox("Diachi")
+                <br />
+            </td>
+            </p>
+        </tr>
+        <tr style="height:40px">
+            <td>Phone*:</td>
+            <p>
+            <td>
+                @Html.TextBox("Dienthoai")
+                <br />
+                @ViewData["Loi6"]
 
-                                        </td>
-                                        </p>
-                                    </tr>
-                                    <tr style="height:40px">
-                                        <td>Email*:</td>
-                                        <p>
-                                        <td>
-                                            @Html.TextBox("Email")
-                                            <br />
-                                            @ViewData["Loi5"]
+            </td>
+            </p>
+        </tr>
+        <tr style="height:40px">
+            <td>Birth:</td>
+            <p>
+            <td>
+                <input type="date" name="Ngaysinh" /><br />
+            </td>
+            </p>
+        </tr>
+        <tr style="height:40px">
+            <td></td>
+            <td>
+                <button type="Submit" class="btn btn-default">Sign in</button>
 
-                                        </td>
-                                        </p>
-                                    </tr>
-                                    <tr style="height:40px">
-                                        <td>Address:</td>
-                                        <p>
-                                        <td>
-                                            @Html.TextBox("Diachi")
-                                            <br />
-                                        </td>
-                                        </p>
-                                    </tr>
-                                    <tr style="height:40px">
-                                        <td>Phone*:</td>
-                                        <p>
-                                        <td>
-                                            @Html.TextBox("Dienthoai")
-                                            <br />
-                                            @ViewData["Loi6"]
+            </td>
+        </tr>
 
-                                        </td>
-                                        </p>
-                                    </tr>
-                                    <tr style="height:40px">
-                                        <td>Birth:</td>
-                                        <p>
-                                        <td>
-                                            <input type="date" name="Ngaysinh" /><br />
-                                        </td>
-                                        </p>
-                                    </tr>
-                                    <tr style="height:40px">
-                                        <td></td>
-                                        <td>
-                                            <button type="Submit" class="btn btn-default">Sign in</button>
-                                            <button type="Submit" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </td>
-                                    </tr>
-                                
-                                }
-                                </table>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </li>
-    
-        <div class="container">
-            <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Login</button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="myModal2" role="dialog">
-                <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Log in</h4>
-                        </div>
-                        <div class="modal-body">
-                            <h4 style="color:red; text-align:center">@ViewBag.Thongbao</h4>
-                            <table align="center">
-                                <h3 style="text-align:center">ĐĂNG NHẬP</h3>
-                                @using (Html.BeginForm())
-                                {
-                                    @Html.ValidationSummary(true)
-                                    <tr style="height:40px">
-                                        <td> Tên đăng nhập:</td>
-                                        <td>
-                                            @Html.TextBox("TenDN")
-                                            <br />
-                                            @ViewData["Loi1"]
-                                        </td>
-                                    </tr>
-                                    <tr style="height:40px">
-                                        <td> Mật khẩu:</td>
-                                        <td>
-                                            @Html.Password("Matkhau")
-                                            <br />
-                                            <br />
-                                            @ViewData["Loi2"]
-                                        </td>
-                                    </tr>
-                                    <tr style="height:40px">
-                                        <td></td>
-                                        <td>
-                                            <input type="submit" value="Login" />                                         
-                                        </td>
-                                    </tr>
-                                }
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-</ul>
-</html>
+    }
+</table>

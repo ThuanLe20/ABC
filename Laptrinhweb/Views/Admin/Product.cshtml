@@ -1,0 +1,72 @@
+﻿@using Laptrinhweb.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<Product>
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Product</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddProduct")
+</p>
+<table class="table">
+    <tr>
+        <th width="150">
+            Name
+        </th>
+        <th>
+            Image
+        </th>
+        <th width="350">
+            Description
+        </th>
+        <th>
+            Price
+        </th>
+        <th width="100">
+            Category Id
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.namepro)
+    </td>
+    <td>
+        <img src="~/Images/@item.image" width="70" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.idcate)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.idpro }) |
+        @Html.ActionLink("Details", "Details", new { id = item.idpro }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.idpro })
+    </td>
+</tr>
+    }
+
+</table>
+<div style="clear:both">
+    Trang @Model.PageNumber/@Model.PageCount
+</div>
+<div class="MenuTrang">
+
+    @Html.PagedListPager(Model, page => Url.Action("Product", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

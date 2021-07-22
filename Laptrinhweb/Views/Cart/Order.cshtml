@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutABC1.cshtml";
 }
 
-<h2 style="text-align:center">Supply Details</h2>
+<h2 style="text-align:center"><br /><br /><br />Supply Details</h2>
 <table align="center" border="1">
     <tr style="text-align:center;font-weight:bold">
         <td>Id Product</td>
@@ -41,7 +41,7 @@
 </table>
 <h2 style="text-align:center">Order Details</h2>
 @{ 
-    Man m = (Man)Session["Taikhoan"];
+    Man m = (Man)Session["Username"];
 }
 <table align="center">
     @using (Html.BeginForm())
@@ -54,7 +54,7 @@
         <tr style="height:40px">
             <td>Address</td>
             <td style="font-weight:bold">@m.address</td>
-        </tr>
+        </tr>    
         <tr style="height:40px">
             <td>Phone</td>
             <td style="font-weight:bold">@m.phone</td>
@@ -66,13 +66,13 @@
         <tr style="height:40px">
             <td>Date out</td>
             <td style="font-weight:bold">
-                <input type="date" name="Dateout"/>
+                <input type="date" name="Dateout" />
             </td>
         </tr>
         <tr style="height:40px">
             <td></td>
-            <td >
-                <input type="submit" value="Accept Order"/>
+            <td>
+                <input type="submit" value="Accept Order" />
             </td>
         </tr>
     }

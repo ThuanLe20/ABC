@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<Laptrinhweb.Models.Product>
+    @using Laptrinhweb.Models;
+
+
 @{
     ViewBag.Title = "ProductAll";
     Layout = "~/Views/Shared/_LayoutABC1.cshtml";
@@ -35,6 +38,7 @@
         </div>
     }
 </div>
+
 <div >
     <h2><a href="@Url.Action("All", "ABC")" style="color:black">Back</a></h2>
 </div>

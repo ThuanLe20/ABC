@@ -1,0 +1,66 @@
+﻿@using Laptrinhweb.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<Bill>
+@{
+    ViewBag.Title = "Bill";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+}
+
+<h2>Bill</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Address
+        </th>
+        <th>
+            Datein
+        </th>
+        <th>
+            Dateout
+        </th>
+        <th>
+            Phone
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Customer Id
+        </th>
+        <th></th>
+    </tr>
+
+    @{
+        Man m = (Man)Session["Username"];
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => m.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datein)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateout)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phoneout)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idcus)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "DetailsBill", new { id = item.idbill }) |
+                @Html.ActionLink("Delete", "DeleteBill", new { id = item.idbill })
+            </td>
+        </tr>
+    }
+
+</table>
